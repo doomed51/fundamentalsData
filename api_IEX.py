@@ -20,9 +20,14 @@ class api_IEX:
         return pd.read_json(apiPath, typ='series')
 
     def returnMarketCap(self, myTicker):
-        """ returns marketcap value """
+        """ returns Market Capitalization of the passed Ticker """
         returnDF = self.returnKeyStats(myTicker)
         return returnDF['marketcap']
+
+    def returnNetProfitMargin(self, myTicker):
+        """ returns the net profit margin of the passed Ticker """
+        returnDF = self.returnKeyStats(myTicker)
+        return returnDF['profitMargin']
 
     def _normalizeTicker(self, myTicker):
         """ Parses the Symbol to make sure it is only the ticker symbol and not the company name"""

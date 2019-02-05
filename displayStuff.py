@@ -13,7 +13,8 @@ ticker = "CSCO"
 
 tableLayout =[      
           [sg.Text('Fundamentals')],      
-          [sg.Text('Market Cap', size=(15, 1)), sg.Text(dataFeed.returnMarketCap(ticker),size=(15,1))],      
+          [sg.Text('Market Cap', size=(15, 1)), sg.Text(dataFeed.returnMarketCap(ticker),size=(15,1))],
+          [sg.Text('Net Profit Margin', size=(15,1)), sg.Text(dataFeed.returnNetProfitMargin(ticker),size=(15,1))],   
           [sg.Quit()]      
          ]
 
