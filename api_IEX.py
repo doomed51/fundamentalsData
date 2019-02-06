@@ -21,16 +21,6 @@ class api_IEX:
         apiPath = self.baseURL + myTicker + "/stats"
         return pd.read_json(apiPath, typ='series')
 
-    def returnMarketCap(self, myTicker):
-        """ returns Market Capitalization of the passed Ticker """
-        returnDF = self.returnKeyStats(myTicker)
-        return returnDF['marketcap']
-
-    def returnNetProfitMargin(self, myTicker):
-        """ returns the net profit margin of the passed Ticker """
-        returnDF = self.returnKeyStats(myTicker)
-        return returnDF['profitMargin']
-
     def _normalizeTicker(self, myTicker):
         """ Parses the Symbol to make sure it is only the ticker symbol and not the company name"""
         if '(' and ')' in myTicker:
