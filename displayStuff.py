@@ -7,6 +7,7 @@ userInput_ticker = input("what ticker?")
 
 myTicker = ticker.ticker(userInput_ticker)
 myTicker.populateKeyStats()
+myTicker.populateCompanyInformation()
 
 #dataFeed = api_IEX.api_IEX()
 
@@ -17,7 +18,8 @@ myTicker.populateKeyStats()
 #                 [sg.Submit(), sg.Cancel()]]
 
 tableLayout =[      
-          #[sg.Text('Fundamentals')],      
+          [sg.Text(myTicker.companyName)],      
+          [sg.Text('Description', size=(15,1)), sg.Text(myTicker.description,size=(40,5))],
           [sg.Text('Market Cap', size=(15, 1)), sg.Text(myTicker.marketCap,size=(15,1))],
           [sg.Text('Dividend Yield', size=(15,1)), sg.Text(myTicker.dividendYield,size=(15,1))],
           [sg.Text('ROE', size=(15,1)), sg.Text(myTicker.returnOnEquity,size=(15,1))],

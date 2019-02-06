@@ -8,6 +8,9 @@ import re
 class api_IEX:
     """A class to work with the IEX API @ api.iextrading.com """
     
+    #TODO 
+    # need logic to handle tickers that don't exist 
+
     def __init__(self):
         self.baseURL = "https://api.iextrading.com/1.0/stock/"
 
@@ -21,8 +24,13 @@ class api_IEX:
         apiPath = self.baseURL + myTicker + "/stats"
         return pd.read_json(apiPath, typ='series')
 
+    def returnCompanyInformation(self, myTicker):
+        """ returns basic company information such as the name, exchange, description, etc: https://iextrading.com/developer/docs/#company """
+        apiPath = self.baseURL + myTicker + "/company"
+        return pd.read_json(apiPath, typ='series')
+
     def _normalizeTicker(self, myTicker):
-        """ Parses the Symbol to make sure it is only the ticker symbol and not the company name"""
+        """ Parses the Symbol to make sure it is only the ticker symbol and not the company name. This is generally needed when scraping from websites as opposed to user input."""
         if '(' and ')' in myTicker:
             # some regex voodoo
             return re.search('\(([^)]+)', myTicker).group(1)

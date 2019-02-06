@@ -11,7 +11,12 @@ class ticker:
         self.marketCap = 0
 
     def populateKeyStats(self):
-        """ populates the ticker with Market Capitalization, dividend yield, TTM Return on Equity, price/book """
+        """ populates the ticker with: 
+        Market Capitalization, 
+        dividend yield, 
+        TTM Return on Equity, 
+        price/book """
+        
         pd = dataFeed.returnKeyStats(self.symbol)
         self.marketCap = pd['marketcap']
         #self.netProfitMargin = pd['profitMargin']
@@ -24,4 +29,16 @@ class ticker:
         #self.insiderPercent = pd['insiderPercent']        
         self.priceToBook = pd['priceToBook']
 
-
+    def populateCompanyInformation(self): 
+        """ populate the ticker with:
+        Name 
+        Exchange
+        Industry
+        Description
+        Website """
+        pd = dataFeed.returnCompanyInformation(self.symbol)
+        self.companyName = pd['companyName']
+        self.industry = pd['industry']
+        self.exchange = pd['exchange']
+        self.description = pd['description']
+        self.website = pd ['website']
