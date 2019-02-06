@@ -1,6 +1,11 @@
 import ticker 
 
-myTicker = ticker.ticker('CSCO')
+userInput_ticker = input("what ticker?")
+
+myTicker = ticker.ticker(userInput_ticker)
 
 myTicker.populateKeyStats()
-print(myTicker.netProfitMargin)
+attrs = vars(myTicker)
+
+# debug print
+#print(', '.join("%s: %s" % item for item in attrs.items()))
