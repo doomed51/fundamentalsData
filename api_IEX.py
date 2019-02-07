@@ -29,6 +29,16 @@ class api_IEX:
         apiPath = self.baseURL + myTicker + "/company"
         return pd.read_json(apiPath, typ='series')
 
+    def returnQuote(self, myTicker):
+        """ returns realtime stock quote information: https://iextrading.com/developer/docs/#quote """
+        apiPath = self.baseURL + myTicker + "/quote"
+        return pd.read_json(apiPath, typ='series')
+
+    def returnFinancials_Annual(self, myTicker):
+        """ returns key financial information from income statements and balance sheets on an ANNUAL basis: https://iextrading.com/developer/docs/#financials """
+        apiPath = self.baseURL + myTicker + "/financials?period=annual"
+        return pd.read_json(apiPath, typ='series')
+
     def _normalizeTicker(self, myTicker):
         """ Parses the Symbol to make sure it is only the ticker symbol and not the company name. This is generally needed when scraping from websites as opposed to user input."""
         if '(' and ')' in myTicker:
