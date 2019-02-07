@@ -1,4 +1,7 @@
 {
     "filedescription":"this file contains the benchmark values for company financial fundamentals ",
-    "marketcap" : "50000000"
+    "marketcap" : "50000000",
+    "dividendYield": "1.0",
+    "returnOnEquity": "0.2",
+    "priceToBook": "1.0"
 }
