@@ -19,7 +19,6 @@ class ticker:
         
         pd = dataFeed.returnKeyStats(self.symbol)
         self.marketCap = pd['marketcap']
-        #self.netProfitMargin = pd['profitMargin']
         self.dividendYield = pd['dividendYield']
         
         # ROE is the TTM Value
@@ -42,3 +41,21 @@ class ticker:
         self.exchange = pd['exchange']
         self.description = pd['description']
         self.website = pd ['website']
+
+    def populateQuote(self):
+        """ populate ticker with realtime quote info """
+        pd = dataFeed.returnQuote(self.symbol)
+        self.week52High = pd['week52High']
+        self.week52Low = pd['week52Low']
+        self.latestPrice = pd['latestPrice']
+        self.latestVolume = pd['latestVolume']
+
+    def populateAnnualFinancials(self):
+        """ populate ticker with annual financials """
+        pd = dataFeed.returnFinancials_Annual(self.symbol)
+        #revenue, cash, debt
+        self.revenue = pd[0][0]['totalRevenue']
+        self.cash = pd[0][0]['totalCash']
+        self.debt = pd[0][0]['totalDebt']
+        self.netProfitMargin = pd[0][0]['netIncome'] / self.revenue * 100
+
