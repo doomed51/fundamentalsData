@@ -10,6 +10,18 @@ class ticker:
         self.symbol = symbol
         self.marketCap = 0
 
+    def populateTicker(self):
+        self.populateKeyStats()
+        self.populateCompanyInformation()
+        self.populateQuote()
+        self.populateAnnualFinancials()
+
+        # Calculated data
+        self.netProfitMargin = self.netIncome / self.revenue * 100
+        self.earningsPerShare = self.netIncome / self.sharesOutstanding
+        print (self.earningsPerShare)
+        print (self.netIncome)
+    
     def populateKeyStats(self):
         """ populates the ticker with: 
         Market Capitalization, 
@@ -27,6 +39,7 @@ class ticker:
         # % insider ownership is not as important as TTM net inflow/outflow which is not in IEX
         #self.insiderPercent = pd['insiderPercent']        
         self.priceToBook = pd['priceToBook']
+        self.sharesOutstanding = pd['sharesOutstanding']
 
     def populateCompanyInformation(self): 
         """ populate the ticker with:
@@ -57,5 +70,6 @@ class ticker:
         self.revenue = pd[0][0]['totalRevenue']
         self.cash = pd[0][0]['totalCash']
         self.debt = pd[0][0]['totalDebt']
-        self.netProfitMargin = pd[0][0]['netIncome'] / self.revenue * 100
+        self.netIncome = pd[0][0]['netIncome']
+        
 
