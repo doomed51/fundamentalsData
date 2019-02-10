@@ -19,9 +19,10 @@ class ticker:
         # Calculated data
         self.netProfitMargin = self.netIncome / self.revenue * 100
         self.earningsPerShare = self.netIncome / self.sharesOutstanding
-        print (self.earningsPerShare)
-        print (self.netIncome)
-    
+        
+        #this P/E is invalid since the EPS is from fiscal 2017 and the price is the latest market price! 
+        #self.priceToEarnings = self.latestPrice / self.earningsPerShare
+            
     def populateKeyStats(self):
         """ populates the ticker with: 
         Market Capitalization, 
