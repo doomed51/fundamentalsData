@@ -17,7 +17,9 @@ class ticker:
         self.populateAnnualFinancials()
 
         # Calculated data
+        # Dependencies -> populateAnnualFinancials()
         self.netProfitMargin = self.netIncome / self.revenue * 100
+        # Dependencies -> populateAnnualFinancials() &&  populateKeyStats
         self.earningsPerShare = self.netIncome / self.sharesOutstanding
         
         #this P/E is invalid since the EPS is from fiscal 2017 and the price is the latest market price! 
@@ -67,10 +69,9 @@ class ticker:
     def populateAnnualFinancials(self):
         """ populate ticker with annual financials """
         pd = dataFeed.returnFinancials_Annual(self.symbol)
-        #revenue, cash, debt
-        self.revenue = pd[0][0]['totalRevenue']
-        self.cash = pd[0][0]['totalCash']
-        self.debt = pd[0][0]['totalDebt']
-        self.netIncome = pd[0][0]['netIncome']
+        self.revenue = pd[1][0]['totalRevenue']
+        self.cash = pd[1][0]['totalCash']
+        self.debt = pd[1][0]['totalDebt']
+        self.netIncome = pd[1][0]['netIncome']
         
 
