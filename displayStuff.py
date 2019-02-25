@@ -18,13 +18,12 @@ TableLayoutWx = [
             #           Meta Data
             # ****************************
             [sg.Frame(layout=[
-            [sg.Text('Description', size=(15,5)), sg.Text(myTicker.description,size=(30,5))]],
+            [sg.Text('Description', size=(15,5)), sg.Multiline(myTicker.description,disabled=True, size=(30,8))]],
             title = myTicker.companyName, title_color='red',relief=sg.RELIEF_SUNKEN)],
             # ****************************
             #           Basics
             # ****************************
             [sg.Frame(layout=[
-            [sg.Text('Basics', size=(45,2), justification='center')],
             [sg.Text('Market Cap', size=(15, 1)), sg.Text(myTicker.marketCap,size=(15,1))],
             [sg.Text('Latest Price', size=(15, 1)), sg.Text(myTicker.latestPrice,size=(15,1))],
             [sg.Text('52 Week Low', size=(15, 1)), sg.Text(myTicker.week52Low,size=(15,1))],
