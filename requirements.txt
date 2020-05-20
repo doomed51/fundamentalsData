@@ -1,3 +1,4 @@
 PySimpleGUI
 PySimpleGUIWx
 Pandas
+yfinance
