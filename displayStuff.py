@@ -1,11 +1,11 @@
 import PySimpleGUI as sg      
 
-import ticker
+import tickerYfinance
 import api_IEX
 
 userInput_ticker = input("what ticker?")
 
-myTicker = ticker.ticker(userInput_ticker)
+myTicker = tickerYfinance.ticker(userInput_ticker)
 myTicker.populateTicker()
 
 TableLayoutWx = [

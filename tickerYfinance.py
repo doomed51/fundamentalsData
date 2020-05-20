@@ -1,7 +1,7 @@
 import pandas as pd
 from api_IEX import api_IEX
 
-dataFeed = api_IEX()
+#dataFeed = api_IEX()
 
 class ticker: 
     """ a base class represnting a ticker and associated financial metadata""" 
@@ -32,17 +32,17 @@ class ticker:
         TTM Return on Equity, 
         price/book """
         
-        pd = dataFeed.returnKeyStats(self.symbol)
-        self.marketCap = pd['marketcap']
-        self.dividendYield = pd['dividendYield']
+       # pd = dataFeed.returnKeyStats(self.symbol)
+        self.marketCap = 1000
+        self.dividendYield = 1000
         
         # ROE is the TTM Value
-        self.returnOnEquity = pd['returnOnEquity'] 
+        self.returnOnEquity = 1000 
         
         # % insider ownership is not as important as TTM net inflow/outflow which is not in IEX
         #self.insiderPercent = pd['insiderPercent']        
-        self.priceToBook = pd['priceToBook']
-        self.sharesOutstanding = pd['sharesOutstanding']
+        self.priceToBook = 1000
+        self.sharesOutstanding = 1000
 
     def populateCompanyInformation(self): 
         """ populate the ticker with:
@@ -51,27 +51,27 @@ class ticker:
         Industry
         Description
         Website """
-        pd = dataFeed.returnCompanyInformation(self.symbol)
-        self.companyName = pd['companyName']
-        self.industry = pd['industry']
-        self.exchange = pd['exchange']
-        self.description = pd['description']
-        self.website = pd ['website']
+        #pd = dataFeed.returnCompanyInformation(self.symbol)
+        self.companyName = 1000
+        self.industry = 1000
+        self.exchange = 1000
+        self.description = 1000
+        self.website = 1000
 
     def populateQuote(self):
         """ populate ticker with realtime quote info """
-        pd = dataFeed.returnQuote(self.symbol)
-        self.week52High = pd['week52High']
-        self.week52Low = pd['week52Low']
-        self.latestPrice = pd['latestPrice']
-        self.latestVolume = pd['latestVolume']
+        #pd = dataFeed.returnQuote(self.symbol)
+        self.week52High = 1000
+        self.week52Low = 1000
+        self.latestPrice = 1000
+        self.latestVolume = 1000
 
     def populateAnnualFinancials(self):
         """ populate ticker with annual financials """
-        pd = dataFeed.returnFinancials_Annual(self.symbol)
-        self.revenue = pd[1][0]['totalRevenue']
-        self.cash = pd[1][0]['totalCash']
-        self.debt = pd[1][0]['totalDebt']
-        self.netIncome = pd[1][0]['netIncome']
+        #pd = dataFeed.returnFinancials_Annual(self.symbol)
+        self.revenue = 1000
+        self.cash = 1000
+        self.debt = 1000
+        self.netIncome = 1000
         
 
