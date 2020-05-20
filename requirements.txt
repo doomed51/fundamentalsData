@@ -2,3 +2,4 @@ PySimpleGUI
 PySimpleGUIWx
 Pandas
 yfinance
+lxml
