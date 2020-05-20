@@ -1,7 +1,7 @@
 import pandas as pd
-from api_IEX import api_IEX
+import yfinance as yf
 
-#dataFeed = api_IEX()
+yf.pdr_override()
 
 class ticker: 
     """ a base class represnting a ticker and associated financial metadata""" 
@@ -11,6 +11,9 @@ class ticker:
         self.marketCap = 0
 
     def populateTicker(self):
+        # consolidate yfinance calls 
+        self.info = yf.Ticker(self.symbol).info
+        
         self.populateKeyStats()
         self.populateCompanyInformation()
         self.populateQuote()
@@ -33,8 +36,8 @@ class ticker:
         price/book """
         
        # pd = dataFeed.returnKeyStats(self.symbol)
-        self.marketCap = 1000
-        self.dividendYield = 1000
+        self.marketCap = self.info['marketCap']
+        self.dividendYield = self.info['dividendYield']
         
         # ROE is the TTM Value
         self.returnOnEquity = 1000 
@@ -53,18 +56,21 @@ class ticker:
         Website """
         #pd = dataFeed.returnCompanyInformation(self.symbol)
         self.companyName = 1000
-        self.industry = 1000
         self.exchange = 1000
-        self.description = 1000
-        self.website = 1000
+        
+        self.industry = self.info['sector']
+        self.description = self.info['longBusinessSummary']
+        self.website = self.info['website']
+        self.week52High = self.info['fiftyTwoWeekHigh']
+        self.week52Low = self.info['fiftyTwoWeekLow']
+        self.latestVolume = self.info['averageVolume']
+        self.netProfitMargin = self.info['profitMargins']
 
     def populateQuote(self):
         """ populate ticker with realtime quote info """
         #pd = dataFeed.returnQuote(self.symbol)
-        self.week52High = 1000
-        self.week52Low = 1000
         self.latestPrice = 1000
-        self.latestVolume = 1000
+
 
     def populateAnnualFinancials(self):
         """ populate ticker with annual financials """
