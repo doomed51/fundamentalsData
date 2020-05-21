@@ -12,16 +12,20 @@ class ticker:
 
     def populateTicker(self):
         # consolidate yfinance calls 
+        print ('starting INFO lookup')
         self.info = yf.Ticker(self.symbol).info
-        
+        print ('INFO retrieved')
+
+        print ('starting FINANCIALS lookup')
+        self.financials = yf.Ticker(self.symbol).financials
+        print ('FINANCIALS retrieved')
+        #print(self.financials[self.financials.columns[0]])
+
         self.populateKeyStats()
         self.populateCompanyInformation()
         self.populateQuote()
         self.populateAnnualFinancials()
 
-        # Calculated data
-        # Dependencies -> populateAnnualFinancials()
-        self.netProfitMargin = self.netIncome / self.revenue * 100
         # Dependencies -> populateAnnualFinancials() &&  populateKeyStats
         self.earningsPerShare = self.netIncome / self.sharesOutstanding
         
@@ -75,9 +79,9 @@ class ticker:
     def populateAnnualFinancials(self):
         """ populate ticker with annual financials """
         #pd = dataFeed.returnFinancials_Annual(self.symbol)
-        self.revenue = 1000
+        self.revenue = self.financials[self.financials.columns[0]]['Total Revenue']
         self.cash = 1000
         self.debt = 1000
-        self.netIncome = 1000
+        self.netIncome = self.financials[self.financials.columns[0]]['Net Income']
         
 
