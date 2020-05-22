@@ -35,8 +35,8 @@ TableLayoutWx = [
             # ****************************
             [sg.Frame(layout=[
             [sg.Text('Net Profit Margin', size=(15, 1)), sg.Text(myTicker.netProfitMargin,size=(15,1))],
-            [sg.Text('Total Cash', size=(15, 1)), sg.Text(myTicker.cash,size=(15,1))],
-            [sg.Text('Total Debt', size=(15, 1)), sg.Text(myTicker.debt,size=(15,1))]],
+            [sg.Text('Cash', size=(15, 1)), sg.Text(myTicker.cash,size=(15,1))],
+            [sg.Text('Current Liabilities', size=(15, 1)), sg.Text(myTicker.currentLiabilities,size=(15,1))]],
             title = 'Company Health', title_color='red',relief=sg.RELIEF_SUNKEN)],
             # ****************************
             #           Ratios
