@@ -24,6 +24,10 @@ class ticker:
         self.balanceSheet = yf.Ticker(self.symbol).balance_sheet
         print ('BALANCE SHEET retrieved')
 
+        print ('getting 1d quote')
+        self.history1d = yf.Ticker(self.symbol).history(period="1d")
+        print ('1d quote retrieved')
+
         self.populateKeyStats()
         self.populateCompanyInformation()
         self.populateQuote()
@@ -76,15 +80,19 @@ class ticker:
     def populateQuote(self):
         """ populate ticker with realtime quote info """
         #pd = dataFeed.returnQuote(self.symbol)
-        self.latestPrice = 1000
+        self.latestPrice = self.history1d['Close'][0]
 
 
     def populateAnnualFinancials(self):
         """ populate ticker with annual financials """
         #pd = dataFeed.returnFinancials_Annual(self.symbol)
         self.revenue = self.financials[self.financials.columns[0]]['Total Revenue']
+        self.netIncome = self.financials[self.financials.columns[0]]['Net Income']
+        
         self.cash = self.balanceSheet[self.balanceSheet.columns[0]]['Cash']
         self.currentLiabilities = self.balanceSheet[self.balanceSheet.columns[0]]['Total Current Liabilities']
-        self.netIncome = self.financials[self.financials.columns[0]]['Net Income']
+        self.shareholderEquity = self.balanceSheet[self.balanceSheet.columns[0]]['Total Stockholder Equity']
+        self.commonStock = self.balanceSheet[self.balanceSheet.columns[0]]['Common Stock']
+        
         
 
