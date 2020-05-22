@@ -3,3 +3,4 @@ PySimpleGUIWx
 Pandas
 yfinance
 lxml
+xlsxwriter
