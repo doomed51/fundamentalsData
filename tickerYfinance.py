@@ -19,7 +19,10 @@ class ticker:
         print ('starting FINANCIALS lookup')
         self.financials = yf.Ticker(self.symbol).financials
         print ('FINANCIALS retrieved')
-        #print(self.financials[self.financials.columns[0]])
+        
+        print ('starting BALANCE SHEET lookup')
+        self.balanceSheet = yf.Ticker(self.symbol).balance_sheet
+        print ('BALANCE SHEET retrieved')
 
         self.populateKeyStats()
         self.populateCompanyInformation()
@@ -80,8 +83,8 @@ class ticker:
         """ populate ticker with annual financials """
         #pd = dataFeed.returnFinancials_Annual(self.symbol)
         self.revenue = self.financials[self.financials.columns[0]]['Total Revenue']
-        self.cash = 1000
-        self.debt = 1000
+        self.cash = self.balanceSheet[self.balanceSheet.columns[0]]['Cash']
+        self.currentLiabilities = self.balanceSheet[self.balanceSheet.columns[0]]['Total Current Liabilities']
         self.netIncome = self.financials[self.financials.columns[0]]['Net Income']
         
 
