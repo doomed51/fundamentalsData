@@ -28,7 +28,9 @@ TableLayoutWx = [
             [sg.Text('Latest Price', size=(15, 1)), sg.Text(myTicker.latestPrice,size=(15,1))],
             [sg.Text('52 Week Low', size=(15, 1)), sg.Text(myTicker.week52Low,size=(15,1))],
             [sg.Text('52 Week High', size=(15, 1)), sg.Text(myTicker.week52High,size=(15,1))],
-            [sg.Text('Total Revenue', size=(15, 1)), sg.Text(myTicker.revenue,size=(15,1))]],
+            [sg.Text('Total Revenue', size=(15, 1)), sg.Text(myTicker.revenue,size=(15,1))],
+            [sg.Text('Shareholder Equity', size=(15, 1)), sg.Text(myTicker.shareholderEquity,size=(15,1))],
+            [sg.Text('Common Stock', size=(15, 1)), sg.Text(myTicker.commonStock,size=(15,1))]],
             title = 'Basics', title_color='red',relief=sg.RELIEF_SUNKEN)],
             # ****************************
             #       Company Health 
