@@ -39,33 +39,31 @@ class ticker:
         self.populateAnnualFinancials()
 
         # TODO implement below calls with actual data
-        self.companyName = 1000
-        self.exchange = 1000
-        self.salesPerShare = 1111
-        self.cashflowPerShare = 1111
-        self.insiderOwnership = 1111
-        self.insiderBuysTTM = 1111
-        self.stockBuyBack = 1111
-        self.EPSRank = 1111
-        self.RPSRank = 1111
-        self.earningsPerShare5y = 1111
-        self.revenue5y = 1111
-        self.latestPrice5y = 1111
-        self.projectedSales = 1111
-        self.projectedHigh = 1111
-        self.projectedLow = 1111
-        self.starsFairVal = 1111
-        self.currentPE = 1111
-        self.averagePE = 1111
-        self.priceToSales = 1111
-        self.currentRatio = 1111
-        self.quickRatio = 1111
-        self.returnOnEquity = 1000        
-        self.priceToBook = 1000
-        self.sharesOutstanding = 1000
+        self.companyName = "companyName"
+        self.exchange = "exchange"
+        self.salesPerShare = "salesPerShare"
+        self.cashflowPerShare = "cashflowPerShare"
+        self.insiderOwnership = "insiderOwnership"
+        self.stockBuyBack = "stockBuyBack"
+        self.EPSRank = "EPSRank"
+        self.RPSRank = "RPSRank"
+        self.earningsPerShare5y = "earningsPerShare5y"
+        self.revenue5y = "revenue5y"
+        self.projectedSales = "projectedSales"
+        self.projectedHigh = "projectedHigh"
+        self.projectedLow = "projectedLow"
+        self.starsFairVal = "starsFairVal"
+        self.currentPE = "currentPE"
+        self.averagePE = "averagePE"
+        self.priceToSales = "priceToSales"
+        self.currentRatio = "currentRatio"
+        self.quickRatio = "quickRatio"
+        self.returnOnEquity = "returnOnEquity"        
+        self.priceToBook = "priceToBook"
+        self.sharesOutstanding = "sharesOutstanding"
         
         # Dependencies -> populateAnnualFinancials() &&  populateKeyStats
-        self.earningsPerShare = self.netIncome / self.sharesOutstanding
+        self.earningsPerShare = "earningsPerShare"
         
         print ('Printing to Excel...')
         self.printExcel()
@@ -125,7 +123,7 @@ class ticker:
     def tickerToDataframe(self):
 
         
-        return pd.DataFrame({'Data' : [self.symbol, self.sector, self.latestPrice, self.week52High, self.week52Low, self.marketCap, self.latestVolume, self.commonStock, self.revenue, self.shareholderEquity, self.netIncome, self.netProfitMargin,self.cash, self.currentLiabilities, self.salesPerShare, self.cashflowPerShare, self.earningsPerShare, self.dividendYield, self.returnOnEquity, self.insiderOwnership, self.insiderBuysTTM, self.stockBuyBack, self.EPSRank, self.RPSRank, self.earningsPerShare5y, self.revenue5y, self.latestPrice5y, self.projectedSales, self.projectedHigh, self.projectedLow, self.starsFairVal, self.currentPE, self.averagePE, self.priceToSales, self.priceToBook, self.currentRatio, self.quickRatio]})
+        return pd.DataFrame({'Data' : [self.symbol, self.sector, self.latestPrice, self.week52High, self.week52Low, self.marketCap, self.latestVolume, self.revenue, self.netProfitMargin, self.cash, self.currentLiabilities, self.salesPerShare, self.cashflowPerShare, self.earningsPerShare, self.dividendYield, self.returnOnEquity, self.insiderOwnership, self.stockBuyBack, self.EPSRank, self.RPSRank, self.earningsPerShare5y, self.revenue5y, self.projectedSales, self.projectedHigh, self.projectedLow, self.starsFairVal, self.currentPE, self.averagePE, self.priceToSales, self.priceToBook, self.currentRatio, self.quickRatio]})
     
     def printExcel(self):
        # self.tickerToDataframe()
@@ -135,34 +133,19 @@ class ticker:
         # load up the file 
         # TODO catch file not found error
         # TODO filename from config 
-        myFilename = 'testFile.xlsx'
-        mySheetName = 'Sheet1'
+        myFilename = 'Valuations.xlsx'
+        mySheetName = 'Valuations'
         myExcelFile = load_workbook(filename = myFilename)
-        myWorksheet = myExcelFile['Sheet1']
+        myWorksheet = myExcelFile[mySheetName]
 
-        nextRow = 1
-        nextCol = myWorksheet.max_column + 1
+        nextRow = 2
+        nextCol = myWorksheet.max_column
 
         writer = pd.ExcelWriter(myFilename, engine = 'openpyxl')
         writer.book = myExcelFile
         writer.sheets = {ws.title: ws for ws in myExcelFile.worksheets}
 
-        #writer.book = load_workbook('testFile.xlsx')
-
-        
-        
 
         testdf.to_excel(writer, sheet_name=mySheetName, startrow = nextRow, startcol = nextCol, header=False, index=False, )
-        #print ( writer.sheets['Sheet1'].max_row )
 
         writer.save()
-        
-        #...................SAMPLE CODE FOR XLSXWRITER library        
-        
-        #wb = xlsxwriter.Workbook('testFile.xlsx')
-        #ws = wb.add_worksheet()
-        #ws.write(0,0, 'Hello from Python!', startrow=5)
-        #wb.close()
-        # It is also possible to write the dataframe without the header and index.
-        #df4.to_excel(writer, sheet_name='Sheet1', startrow=7, startcol=4, header=False, index=False)
-
