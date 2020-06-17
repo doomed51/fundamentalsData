@@ -13,7 +13,7 @@ TableLayoutWx = [
             #           Input 
             # ****************************
             [sg.Text('Your typed chars appear here:'), sg.Text('', key='_OUTPUT_') ],  
-            [sg.Input(do_not_clear=True, key='_IN_'), sg.Button('Show')],
+            [sg.Input(do_not_clear=True, key='_IN_'), sg.Button('Update')],
             # ****************************
             #           Meta Data
             # ****************************
@@ -24,7 +24,7 @@ TableLayoutWx = [
             #           Basics
             # ****************************
             [sg.Frame(layout=[
-            [sg.Text('Market Cap', size=(15, 1)), sg.Text(myTicker.marketCap,size=(15,1))],
+            [sg.Text('Market Cap', size=(15, 1)), sg.Text(myTicker.marketCap,size=(15,1), key='_marketCap_')],
             [sg.Text('Latest Price', size=(15, 1)), sg.Text(myTicker.latestPrice,size=(15,1))],
             [sg.Text('52 Week Low', size=(15, 1)), sg.Text(myTicker.week52Low,size=(15,1))],
             [sg.Text('52 Week High', size=(15, 1)), sg.Text(myTicker.week52High,size=(15,1))],
@@ -71,9 +71,13 @@ window = sg.Window('Company Info',default_element_size=(12,1)).Layout(TableLayou
 
 while True:
     event, values = window.Read()
-    print(event,values)
     if event is None or event =='Exit':
         break
-    if event == 'Show':
-        window.FindElement('_OUTPUT_').Update(values['_IN_'])    
+    if event == 'Update':
+       # window.FindElement('_marketCap_').Update(values['_IN_'])
+       # print(values['_IN_'])
+        myTicker = ticker.ticker(values['_IN_'])
+        myTicker.populateTicker()
+        window.Refresh()
+
 window.Close()
