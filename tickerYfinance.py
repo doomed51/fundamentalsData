@@ -92,7 +92,7 @@ class ticker:
         Website """
         #pd = dataFeed.returnCompanyInformation(self.symbol)
 
-        
+        self.companyName = self.info['longName']
         self.sector = self.info['sector']
         self.description = self.info['longBusinessSummary']
         self.website = self.info['website']
