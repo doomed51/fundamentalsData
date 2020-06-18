@@ -1,6 +1,7 @@
 PySimpleGUI
 PySimpleGUIWx
 Pandas
-yfinance
+yahooquery
 lxml
 openpyxl
+xlsxwriter
